@@ -2,6 +2,7 @@
 
 # OPIS PROBLEMU:
 # 1. Zaproponować własny przypadek użycia sieci neuronowych do problemu klasyfikacji.
+# Strona do pobrania : https://laurencemoroney.com/datasets.html
 #
 # INSTRUKCJA PRZYGOTOWANIA ŚRODOWISKA
 # 1. Zainstalować interpreter python w wersji 3+ oraz narzędzie pip
