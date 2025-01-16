@@ -32,14 +32,9 @@ from sklearn.metrics import classification_report, confusion_matrix, ConfusionMa
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
-    """
-    Perform CIFAR-10 dataset training and evaluation using a neural network model.
 
-    This script loads the CIFAR-10 dataset, trains a neural network model, and evaluates its performance
-    using classification metrics and a confusion matrix on the test dataset.
-    """
 
-    # Data preprocessing and loading
+    # Ładowanie i przetwarzanie danych
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
@@ -52,12 +47,8 @@ if __name__ == '__main__':
     classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
 
-    # Neural Network Model Definition
+    # Definicja sieci neuronowej
     class Net(nn.Module):
-        """
-        Neural network model for image classification.
-        """
-
         def __init__(self):
             super().__init__()
             self.conv1 = nn.Conv2d(3, 6, 5)
@@ -68,15 +59,7 @@ if __name__ == '__main__':
             self.fc3 = nn.Linear(84, 10)
 
         def forward(self, x):
-            """
-            Perform forward pass through the neural network layers.
 
-            Parameters:
-            x (tensor): Input data tensor.
-
-            Returns:
-            x (tensor): Output tensor after passing through the network.
-            """
             x = self.pool(F.relu(self.conv1(x)))
             x = self.pool(F.relu(self.conv2(x)))
             x = torch.flatten(x, 1)  # flatten all dimensions except batch
@@ -91,11 +74,9 @@ if __name__ == '__main__':
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
-    # Training the Neural Network
+    # Trenowanie sieci
     for epoch in range(2):
-        """
-        Train the neural network model over multiple epochs.
-        """
+
         for i, data in enumerate(trainloader, 0):
             inputs, labels = data
             optimizer.zero_grad()
@@ -106,7 +87,7 @@ if __name__ == '__main__':
 
     print('Finished Training')
 
-    # Testing and Evaluation
+    # Testowanie modelu
     dataiter = iter(testloader)
     images, labels = next(dataiter)
     outputs = net(images)
@@ -131,7 +112,7 @@ if __name__ == '__main__':
     print("\nClassifier performance on test dataset\n")
     print(classification_report(true_labels, predicted_labels))
     print("#" * 40 + "\n")
-
+# Ocena wyników
     cm = confusion_matrix(true_labels, predicted_labels, normalize='all')
     cmd = ConfusionMatrixDisplay(cm, display_labels=classes)
     fig, ax = plt.subplots(figsize=(10, 10))

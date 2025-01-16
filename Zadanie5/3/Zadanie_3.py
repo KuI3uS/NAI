@@ -36,17 +36,7 @@ train_images = train_images / 255.0
 test_images = test_images / 255.0
 
 def recognize_clothes(model):
-    """
-        Train and evaluate a neural network model to recognize clothes.
 
-        This function compiles, trains, and evaluates a neural network model to recognize clothing items using the Fashion MNIST dataset.
-
-        Parameters:
-        model (tf.keras.Sequential): Neural network model architecture.
-
-        Returns:
-        test_acc (float): Accuracy of the trained model on the test dataset.
-        """
 
     model.compile(optimizer='adam',
                   loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
@@ -59,11 +49,7 @@ def recognize_clothes(model):
     return test_acc
 
 if __name__ == '__main__':
-    """
-        Perform clothing recognition using neural networks.
-
-        This script loads the Fashion MNIST dataset, creates and evaluates two neural network models to recognize clothing items, and displays their test accuracies.
-    """
+   
 
     model = tf.keras.Sequential([
         tf.keras.layers.Flatten(input_shape=(28, 28)),
